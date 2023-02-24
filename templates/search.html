@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YonagaAPI</title>
+</head>
+<body>
+    <form action="{{url_for('search')}}" method="GET" >
+        <input type="text" name="text" placeholder="キーワードを入力">
+        <input type="submit" value="検索">
+    </form>
+    <p>{{num}}件の検索結果が見つかりました</p>
+    <table style="border-collapse:  collapse">
+        <tr>
+          <th style="border: solid 1px;">サムネイル</th>
+          <th style="border: solid 1px;">配信タイトル</th>
+          <th style="border: solid 1px;">URL</th>
+        </tr>
+        {% for l in req["Unnamed: 0"] %}
+        <tr>
+            <td style="border: solid 1px; text-align: center;"><img src="{{ req['thumbnail'][l] }}" style="height:50%;width:50%;"></td>
+            <td style="border: solid 1px;">{{ req["title"][l] }}</td>
+            <td style="border: solid 1px;"><a href="{{ req['url'][l] }}" target="_blank">URL</a></td>
+        </tr>  
+        {% endfor %}
+      </table>
+                                                                                                                                                 
+</body>
+</html>
