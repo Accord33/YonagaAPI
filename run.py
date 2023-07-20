@@ -32,7 +32,7 @@ def reload_csv():
         data = f.read()
     soup = bs(data, "html.parser")
     dismissible = soup.select("#dismissible")
-    titles = [dismissible[i].find("yt-formatted-string").string for i in range(len(dismissible))]
+    titles = [i.get_text() for i in soup.find_all(id="video-title")]
     urls = ["https://youtube.com"+str(dismissible[i].a.get("href")) for i in range(len(dismissible))]
     thumbnails = [dismissible[i].find("img").attrs['src'] for i in range(len(dismissible))]
     times = [dismissible[i].find("span",class_="ytd-thumbnail-overlay-time-status-renderer").string.replace("\n", "").replace("  ", "") for i in range(len(dismissible))]
